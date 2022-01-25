@@ -1,0 +1,24 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "dev": "nodemon -L",
+    "start": "nodemon -L",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "express": "^4.17.2",
+    "pg": "^8.7.1",
+    "sequelize": "^6.14.1"
+  },
+  "devDependencies": {
+    "dotenv": "^14.3.0",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.15"
+  }
+}
