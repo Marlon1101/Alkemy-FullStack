@@ -2,21 +2,18 @@ const { Sequelize, DataTypes } = require("sequelize");
 
 module.exports = (sequelize) => {
   sequelize.define(
-    "character",
+    "operations",
     {
-      image: {
+      concept: {
         type: DataTypes.STRING,
       },
-      name: {
-        type: DataTypes.STRING,
-      },
-      age: {
+      value: {
         type: DataTypes.INTEGER,
       },
-      weight: {
-        type: DataTypes.FLOAT,
+      date: {
+        type: DataTypes.DATE,
       },
-      history: {
+      type: {
         type: DataTypes.STRING,
       },
     },
