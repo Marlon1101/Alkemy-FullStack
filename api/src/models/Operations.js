@@ -7,11 +7,11 @@ module.exports = (sequelize) => {
       concept: {
         type: DataTypes.STRING,
       },
-      value: {
+      amount: {
         type: DataTypes.INTEGER,
       },
       date: {
-        type: DataTypes.DATE,
+        type: DataTypes.DATEONLY,
       },
       type: {
         type: DataTypes.STRING,
