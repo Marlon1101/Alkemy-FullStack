@@ -1,0 +1,48 @@
+.nav {
+  display: flex;
+  height: 10%;
+}
+.container_links {
+  display: flex;
+  justify-content: center;
+  height: 100%;
+}
+
+.link {
+  margin-left: 40px;
+  margin-right: 40px;
+  margin-top: 15px;
+  margin-bottom: 20px;
+  background: linear-gradient(to bottom, #009dff 5%, #005180 100%);
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: montserrat;
+  font-size: 15px;
+  padding: 6px 24px;
+  text-decoration: none;
+}
+
+.link:hover {
+  background: linear-gradient(to bottom, #77a809 5%, #89c403 100%);
+}
+
+.link:active {
+  position: relative;
+  top: 1px;
+}
+
+@media screen and (max-width: 414px) {
+  .link{
+    width: 80px;
+    text-align: center;
+    font-size: 12px;
+  }
+  .container_links{
+    flex-direction: column;
+  }
+  .nav{
+    height: 20%;
+  }
+}

@@ -1,4 +1,4 @@
-import "./styles/lastTenOperations.sass";
+import styles from "./styles/lastTenOperations.module.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -12,32 +12,40 @@ export default function LastTenOperations() {
     }
   });
   return (
-    <table>
-      <thead>
-        <tr className="thLTO">
-          <th>Concept</th>
-          <th>Amount</th>
-          <th>Date</th>
-          <th>Type</th>
-        </tr>
-      </thead>
-      <tbody>
-        {lastOperations?.map((element) => {
-          return (
-            <tr className="tdLTO">
-              <td>{element.concept}</td>
-              <td>
-                {element.amount.toLocaleString("en-US", {
-                  style: "currency",
-                  currency: "USD",
-                })}
-              </td>
-              <td>{element.date}</td>
-              <td>{element.type}</td>
-            </tr>
-          );
-        })}
-      </tbody>
-    </table>
+    <div className={styles.container_table}>
+      <h3>LAST TEN OPERATIONS</h3>
+      <table>
+        <thead>
+          <tr className={styles.th}>
+            <th>CONCEPT</th>
+            <th>AMOUNT</th>
+            <th>DATE</th>
+            <th>TYPE</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {lastOperations?.map(({ concept, amount, date, type }) => {
+            return (
+              <tr
+                className={
+                  type === "income" ? styles.td_income : styles.td_expense
+                }
+              >
+                <td>{concept}</td>
+                <td>
+                  {amount.toLocaleString("en-US", {
+                    style: "currency",
+                    currency: "USD",
+                  })}
+                </td>
+                <td>{date}</td>
+                <td>{type}</td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
   );
 }

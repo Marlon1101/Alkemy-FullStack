@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./styles/input.sass";
+import styles from "./styles/input.module.css";
 
 export default function Input({ label, name, value, type, input, setInput }) {
   const handleInputChange = (event) => {
@@ -12,13 +12,13 @@ export default function Input({ label, name, value, type, input, setInput }) {
   return (
     <div>
       {name !== "type" ? (
-        <div className="containerInput">
+        <div className={styles.containerInput}>
           <label htmlFor={name}>{label}</label>
           <br />
           <input
             id={name}
             required={true}
-            className="InputNormal"
+            className={styles.InputNormal}
             type={type}
             name={name}
             defaultValue={value}
@@ -26,14 +26,14 @@ export default function Input({ label, name, value, type, input, setInput }) {
           />
         </div>
       ) : (
-        <div className="containerInput">
+        <div className={styles.containerInput}>
           <label htmlFor="type">Type:</label>
           <br />
           <select
             name="type"
             id="type"
             onChange={(event) => handleInputChange(event)}
-            className="InputNormal"
+            className={styles.InputNormal}
           >
             <option hidden>Choose type</option>
             <option value="income">Income</option>

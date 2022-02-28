@@ -1,0 +1,47 @@
+.th th {
+  user-select: none;
+  color: #009dff;
+  margin-right: 100px;
+}
+
+.td_income td {
+  user-select: none;
+  color: rgb(0, 189, 0);
+  text-align: center;
+}
+
+.td_expense td {
+  user-select: none;
+  color: rgb(255, 0, 0);
+  text-align: center;
+}
+
+.container_table {
+  display: flex;
+  width: 40%;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container_table h3 {
+  user-select: none;
+  color: #005180;
+  display: flex;
+  width: 40%;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container_table table {
+  width: 100%;
+}
+
+@media only screen and (max-width: 414px){
+  .container_table table {
+    width: 100vw;
+  }
+  .container_table h3 {
+    text-align: center;
+  }
+  
+}

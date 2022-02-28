@@ -1,0 +1,19 @@
+label {
+  user-select: none;
+  font-weight: bold;
+  color: var(--darkBlue);
+}
+.containerInput {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.InputNormal {
+  margin-bottom: 20px;
+  border: 1px solid var(--lightBlue);
+  width: 175px;
+  height: 25px;
+}
+.InputNormal:focus {
+  outline: none;
+}

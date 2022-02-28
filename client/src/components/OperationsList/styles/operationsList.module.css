@@ -1,0 +1,55 @@
+.container {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 90vh;
+}
+
+.container_table {
+  display: flex;
+  width: 70vw;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container_table table {
+  width: 100vw;
+}
+
+.container_select {
+  display: flex;
+  width: 70%;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.container_select select {
+  margin-right: 0px;
+  width: 90px;
+  border: 1px transparent;
+  color: var(--lightBlue);
+  font-weight: bold;
+  font-size: small;
+}
+.th th {
+  user-select: none;
+  color: #009dff;
+  margin-right: 100px;
+}
+
+@media only screen and (max-width: 414px) {
+  .container_table table {
+    width: 100vw;
+  }
+  .container_select {
+    width: 100%;
+  }
+
+  .container_select select {
+    margin-right: 20px;
+    width: 50px;
+  }
+}

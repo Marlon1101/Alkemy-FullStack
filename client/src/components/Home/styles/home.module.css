@@ -1,0 +1,48 @@
+:root{
+  --darkBlue: #005180;
+  --lightBlue: #009dff;
+}
+
+.background {
+  height: 100vh;
+  width: 100vw;
+}
+
+.container {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  background-color: white;
+}
+
+.container_balance {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  margin: 10px;
+}
+
+.title_balance {
+  user-select: none;
+  color: var(--darkBlue);
+}
+.balance {
+  user-select: none;
+  color: var(--lightBlue);
+}
+
+@media only screen and (max-width: 414px){
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  .container_balance h1 {
+    font-size: 40px;
+  }
+}

@@ -1,14 +1,26 @@
-import { useState, useEffect } from "react";
-import ModifyOperation from "./ModifyOperation";
+import { useEffect, useState } from "react";
 import axios from "axios";
-import "./styles/operationsList.sass";
+import styles from "./styles/operationsList.module.css";
+import Paged from "../Paged/Paged";
+import OperationsMap from "./OperationsMap.jsx";
+import Nav from "../Nav/Nav.jsx";
 
 export default function OperationsList() {
-  const [modal, setModal] = useState(false);
   const [typeOperation, setTypeOperations] = useState("All");
   const [operations, setOperations] = useState();
   const [flag, setFlag] = useState(false);
-  const [dataToModify, setDataToModify] = useState();
+
+  /////////////////////////Paged///////////////////////////////////////
+  const [update, setUpdate] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [countriesPerPage] = useState(5);
+  const iLastCountry = currentPage * countriesPerPage;
+  const iFirstCountry = iLastCountry - countriesPerPage;
+  const cOperations = operations?.slice(iFirstCountry, iLastCountry);
+  const paged = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+  ///////////////////////////////////////////////////////////////////
   useEffect(() => {
     if (!flag) {
       axios
@@ -24,86 +36,54 @@ export default function OperationsList() {
         .then((res) => {
           setOperations(res.data);
           setFlag(!flag);
+          setUpdate(true);
         });
     }
-  });
+  }, [operations, flag, typeOperation]);
 
   const onChangeTypeOperation = (e) => {
     e.preventDefault();
     setTypeOperations(e.target.value);
     setFlag(!flag);
   };
-
-  const handledDelete = (e, id) => {
-    axios.delete(`http://localhost:3001/deleteOperation/${id}`);
-    window.location.reload();
-  };
-  const handledModify = (e, data) => {
-    setDataToModify(data);
-    setModal(!modal);
-  };
   return (
-    <div>
-      <ModifyOperation
-        dataToModify={dataToModify}
-        modal={modal}
-        setModal={setModal}
+    <>
+      <Nav
+        elements={[
+          {
+            path: "/",
+            text: "Home",
+          },
+        ]}
+        position={"flex-start"}
       />
-      <select onChange={(e) => onChangeTypeOperation(e)}>
-        <option value="All">All</option>
-        <option value="Incomes">Incomes</option>
-        <option value="Expenses">Expenses</option>
-      </select>
-      <table>
-        <thead>
-          <tr className="thOL">
-            <th>Concept</th>
-            <th>Amount</th>
-            <th>Date</th>
-            <th>Type</th>
-          </tr>
-        </thead>
-        <tbody>
-          {operations?.map(({ id, concept, amount, date, type }) => {
-            return (
-              <tr key={id} className="tdOL">
-                <td>{concept}</td>
-                <td>
-                  {amount.toLocaleString("en-US", {
-                    style: "currency",
-                    currency: "USD",
-                  })}
-                </td>
-                <td>{date}</td>
-                <td>{type}</td>
-                <td>
-                  <button
-                    onClick={(e) =>
-                      handledModify(e, {
-                        id,
-                        concept,
-                        amount,
-                        date,
-                      })
-                    }
-                  >
-                    Modify
-                  </button>
-                </td>
-                <td>
-                  <button
-                    onClick={(e) => {
-                      handledDelete(e, id);
-                    }}
-                  >
-                    Delete
-                  </button>
-                </td>
+      <div className={styles.container}>
+        <div className={styles.container_select}>
+          <select onChange={(e) => onChangeTypeOperation(e)}>
+            <option value="All">All</option>
+            <option value="Incomes">Incomes</option>
+            <option value="Expenses">Expenses</option>
+          </select>
+        </div>
+        <div className={styles.container_table}>
+          <table>
+            <thead>
+              <tr className={styles.th}>
+                <th>CONCEPT</th>
+                <th>AMOUNT</th>
+                <th>DATE</th>
+                <th>TYPE</th>
               </tr>
-            );
-          })}
-        </tbody>
-      </table>
-    </div>
+            </thead>
+            <OperationsMap cOperations={cOperations} stateUpdate={update} />
+          </table>
+          <Paged
+            countriesPerPage={countriesPerPage}
+            allCountries={operations?.length}
+            paged={paged}
+          />
+        </div>
+      </div>
+    </>
   );
 }

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import "./styles/modifyOperation.sass";
+import styles from "./styles/modifyOperation.module.css";
 import Input from "../FormToRegisterOperations/Input";
 
 export default function ModifyOperation({ dataToModify, modal, setModal }) {
@@ -15,11 +15,11 @@ export default function ModifyOperation({ dataToModify, modal, setModal }) {
     window.location.reload();
   };
   return (
-    <div className="container">
+    <div className={styles.container}>
       {modal && (
-        <div className="modal">
-          <div className="overlay">
-            <div className="modal_content">
+        <div className={styles.modal}>
+          <div className={styles.overlay}>
+            <div className={styles.modal_content}>
               <Input
                 type="text"
                 label="Concept:"
@@ -44,7 +44,7 @@ export default function ModifyOperation({ dataToModify, modal, setModal }) {
                 input={input}
                 setInput={setInput}
               />
-              <button className="btnModify" onClick={handledModify}>
+              <button className={styles.btnModify} onClick={handledModify}>
                 Modify
               </button>
             </div>
